@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Customer Segmentation</title>
+
+	<!-- Bootstrap 5 for styling -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		body {
+			background-color: #f4f4f4;
+			font-family: Arial, sans-serif;
+			text-align: center;
+			padding: 50px;
+		}
+
+		.container {
+			max-width: 600px;
+			background: white;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		h1 {
+			color: #333;
+		}
+
+		.btn-run {
+			background-color: #007bff;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			transition: 0.3s;
+		}
+
+		.btn-run:hover {
+			background-color: #0056b3;
+		}
+
+		#output {
+			background: #f8f9fa;
+			padding: 15px;
+			border-radius: 5px;
+			border: 1px solid #ddd;
+			margin-top: 20px;
+			white-space: pre-wrap;
+			text-align: left;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<h1>Customer Segmentation</h1>
+		<p>Click the button below to run the segmentation model.</p>
+		<button class="btn-run" onclick="runSegmentation()">Run Segmentation</button>
+		<pre id="output">Output will appear here...</pre>
+	</div>
+
+	<script>
+		function runSegmentation() {
+			fetch('/run', { method: 'POST' })
+				.then(response => response.json())
+				.then(data => {
+					document.getElementById('output').innerText = data.output;
+				})
+				.catch(error => console.error("Fetch Error:", error));
+		}
+	</script>
+
+</body>
+
+</html>
